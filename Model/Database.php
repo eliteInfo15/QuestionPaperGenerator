@@ -1,6 +1,7 @@
 <?php 
 class Database{
 	public static $conn;
+	public static $stmt;
 	 const server_name="localhost";
 	 const server_username="root";
 	 const server_password="";
@@ -35,13 +36,14 @@ Database::$conn = new PDO(Database::dsn, Database::server_username,Database::ser
 	}
 
 	public static function read($query)
-	{  $data='';
+	{  $result='';
 	try {
 		if ($query!='') {
-		     $result=Database::$conn->query($query);
-		     $data=$result->fetchAll(PDO::FETCH_ASSOC);
+			$result=Database::$conn->query($query);
+		     
+		  //var_dump($result);  
 		}
-		return $data;
+		return $result;
 	} catch (Exception $e) {
 		echo "Server error: ".$e->getMessage();
 	}
@@ -67,9 +69,9 @@ Database::$conn = new PDO(Database::dsn, Database::server_username,Database::ser
 		try {
 			$result=-1;
 		if ($query!='') {
-			$stmt = Database::$conn->prepare($query);
-            $stmt->execute();
-            $result=$stmt->rowCount();
+			 $result=Database::$conn->exec($query);
+            
+            
 		}
 		return $result;
 		} catch (Exception $e) {
@@ -80,8 +82,7 @@ Database::$conn = new PDO(Database::dsn, Database::server_username,Database::ser
 	}
 	
 }
-Database::connectDb();
-$n=Database::update("update subjec set sname='php' where sname='java' ");
-var_dump($n);
+
+
 
  ?>

@@ -1,27 +1,58 @@
 <?php
 require 'Database.php'; 
 class LoginModel{
-	var $username;
-	var $password;
-    var $role;
+	private $username;
+	private $password;
+    private $role;
     public function __construct()
     {
-    	$db=new Database();
-    	$db->dbConnect();
+        Database::connectDb();	
     }
-    public function validateUser($username,$password,$role)
+    public function setUsername($username)
+    {
+    	$this->username=$username;
+    }
+    public function setPassword($password)
+    {
+    	$this->password=$password;
+    }
+    public function setRole($role)
+    {
+    	$this->role=$role;
+    }
+    public function getUsername()
+    {
+    	return $this->username;
+    }
+    public function getPassword()
+    {
+    	return $this->password;
+    }
+    public function getRole()
+    {
+    	return $this->role;
+    }
+    
+    public function validate()
 	{
-	$login_query="select * from login where username=:username and password=:password and role=:role";
-		$stmt=Database::$conn->prepare($login_query);
-		$stmt->bindParam(':username',$username);
-		$stmt->bindParam(':username',$username);
-		$stmt->bindParam(':role',$role);
-		$queryResponse=$stmt->execute();
-
+	    $loginQuery="select * from login where username='$this->username' and password='$this->password' and role='$this->role'";
+		$result=Database::read($loginQuery);
+        if ($result->fetchAll(PDO::FETCH_ASSOC)) {
+        	return true;
+        }
+        return false;
+	}
+	public function addLoginInfo()
+	{
+		  $insertQuery="insert into login values('$this->username','$this->password','$this->role')";
+		  $rowsInserted=Database::insert($insertQuery);
+		  return $rowsInserted;
 	}
 }
-
-
-
-
+/*$obj=new LoginModel();
+$obj->setPassword('hello');
+$obj->setUsername('llll');
+$obj->setRole('mama');
+$n=$obj->addLoginInfo();
+echo $n*/;
  ?>
