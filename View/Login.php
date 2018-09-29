@@ -103,9 +103,10 @@ em{
       <!-- Password -->
       <div class="md-form">
       	 
-      	 <i class="fa fa-key prefix"></i>
-        <input type="password" id="materialLoginFormPassword" class="form-control" name="password">
-        <label for="materialLoginFormPassword">Password</label>
+      <i class="fa fa-key prefix"></i>
+        <input type="password" id="password-field" class="form-control" name="password" data-toggle="password">
+        <label for="password-field">Password</label>
+        <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password side-align"></span>
     
   </div>
     <div class="md-form col-lg-12 text-center">
@@ -207,7 +208,18 @@ em{
 			} );
   	});
   </script>
-  
+  <script type="text/javascript">
+       $(".toggle-password").click(function() {
+
+  $(this).toggleClass("fa-eye fa-eye-slash");
+  var input = $($(this).attr("toggle"));
+  if (input.attr("type") == "password") {
+    input.attr("type", "text");
+  } else {
+    input.attr("type", "password");
+  }
+});
+   </script>
 </body>
 </html>
 <?php 
