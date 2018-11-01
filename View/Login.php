@@ -19,17 +19,18 @@ if (isset($_SESSION["usernameSession"]) && isset($_SESSION["roleSession"])) {
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>Question Paper Generator</title>
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css" />
   <!-- Bootstrap core CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <!-- Material Design Bootstrap -->
   <link href="css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
   
-  <link rel="stylesheet" type="text/css" href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/compiled-4.5.11.min.css?ver=4.5.11">
+  <link rel="stylesheet" type="text/css" href="css/compiled-4.5.11.min.css">
   <style type="text/css">
   body{
   	overflow-x: hidden;
+    background-color: white !important;
   }
 #logindiv{
 	float: none;
@@ -40,8 +41,11 @@ if (isset($_SESSION["usernameSession"]) && isset($_SESSION["roleSession"])) {
 	font-family: segoe ui light;
 }
 #heading_div{
-display: block !important;
+  float: none;
+  display: block;
+//display: block !important;
 padding: 20px;
+margin: 3px auto !important;
 }
 em{
 	padding-left: 38px;
@@ -68,12 +72,26 @@ em{
     box-shadow: 1px 3px 13px #3f51b5;
     cursor: pointer;
 }
+.side-align{
+      position: relative;
+    top: -34px;
+    float: right;
+}
+
+
   </style>
 
 </head>
 <body class="">
 	<div class="row text-center z-depth-1"  id="heading_div">
-		<h1 class="heading">Question Paper Generator</h1>
+	
+
+  <img src="images/logo.png" style="width: 50px;height: 50px">
+
+
+  <h1 class="heading">Question Paper Generator</h1>
+
+  	
 	</div>
 	<div class="row vertical-center" id="logindiv">
 <div class="col-lg-6 offset-md-3">
@@ -81,7 +99,7 @@ em{
 <div class="z-depth-2">
 
   <h5 class="card-header indigo white-text text-center py-4">
-    <strong>Admin Login</strong>
+    <strong>Login</strong>
   </h5>
 
   <!--Card content-->
@@ -103,11 +121,10 @@ em{
       <!-- Password -->
       <div class="md-form">
       	 
-      <i class="fa fa-key prefix"></i>
+      	 <i class="fa fa-key prefix"></i>
         <input type="password" id="password-field" class="form-control" name="password" data-toggle="password">
         <label for="password-field">Password</label>
         <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password side-align"></span>
-    
   </div>
     <div class="md-form col-lg-12 text-center">
       
@@ -208,7 +225,7 @@ em{
 			} );
   	});
   </script>
-  <script type="text/javascript">
+   <script type="text/javascript">
        $(".toggle-password").click(function() {
 
   $(this).toggleClass("fa-eye fa-eye-slash");

@@ -30,7 +30,7 @@ Database::$conn = new PDO(Database::dsn, Database::server_username,Database::ser
 		}
 		return $result;	
 		} catch (Exception $e) {
-			echo "Server error: ".$e->getMessage();
+			return $e->getCode();
 		}
 		
 	}
@@ -40,8 +40,7 @@ Database::$conn = new PDO(Database::dsn, Database::server_username,Database::ser
 	try {
 		if ($query!='') {
 			$result=Database::$conn->query($query);
-		     
-		  //var_dump($result);  
+		   
 		}
 		return $result;
 	} catch (Exception $e) {
@@ -50,7 +49,7 @@ Database::$conn = new PDO(Database::dsn, Database::server_username,Database::ser
 		
 	}
 
-	public function delete($query)
+	public static function delete($query)
 	{
 		try {
 			$result=-1;
@@ -70,9 +69,7 @@ Database::$conn = new PDO(Database::dsn, Database::server_username,Database::ser
 			$result=-1;
 		if ($query!='') {
 			 $result=Database::$conn->exec($query);
-            
-            
-		}
+         }
 		return $result;
 		} catch (Exception $e) {
 			echo "Server error: ".$e->getMessage();
